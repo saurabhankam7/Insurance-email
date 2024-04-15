@@ -10,7 +10,7 @@ policy_regex = r'Policy No. (.+?)\n'
 
 def fetch_emails(mode, from_date=None, to_date=None):
     # IMAP settings
-    username = 'carmesystems.in@gmail.com'
+    username = 'carme'
     password = 'cyga omdm iflm gugb'
     imap_server = 'imap.gmail.com'
     mailbox = 'INBOX'
