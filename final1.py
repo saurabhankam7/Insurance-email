@@ -7,10 +7,13 @@ name_regex = r'Patient Name (.+?)\n'
 age_regex = r'Age (.+?)\n'
 gender_regex = r'Gender (.+?)\n'
 policy_regex = r'Policy No. (.+?)\n'
+policyh_regex = r'Policy Holder (.+?)\n'
+
+
 
 def fetch_emails(mode, from_date=None, to_date=None):
     # IMAP settings
-    username = 'carme'
+    username = 'carmesystems.in@gmail.com'
     password = 'cyga omdm iflm gugb'
     imap_server = 'imap.gmail.com'
     mailbox = 'INBOX'
@@ -99,6 +102,7 @@ def extract_info_from_body(body):
     age_match = re.search(age_regex, body)
     gender_match = re.search(gender_regex, body)
     policy_match = re.search(policy_regex, body)
+    policy_holder = re.search(policyh_regex, body)
 
     # Extract and store information if found
     if name_match:
@@ -109,6 +113,8 @@ def extract_info_from_body(body):
         info['Gender'] = gender_match.group(1)
     if policy_match:
         info['Policy No.'] = policy_match.group(1)
+    if policy_holder:
+        info['Policy Holder'] = policy_holder.group(1)
 
     return info
 
@@ -121,4 +127,4 @@ for email_data in emails:
         print("Patient INFO:")
         for key, value in info.items():
             print(key + ":", value)
-        print("\n\n")
+        print("\n")
